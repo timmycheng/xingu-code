@@ -40,6 +40,37 @@ export default {
         'gradient-primary': 'linear-gradient(135deg, #9333ea 0%, #ec4899 100%)',
         'gradient-hover': 'linear-gradient(135deg, #7e22ce 0%, #db2777 100%)',
       },
+      animation: {
+        'blob': 'blob 7s infinite',
+        'shimmer': 'shimmer 2s infinite',
+        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+        'float': 'float 3s ease-in-out infinite',
+      },
+      keyframes: {
+        blob: {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+          '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-1000px 0' },
+          '100%': { backgroundPosition: '1000px 0' },
+        },
+        'pulse-glow': {
+          '0%, 100%': { boxShadow: '0 0 20px rgba(147, 51, 234, 0.3)' },
+          '50%': { boxShadow: '0 0 40px rgba(147, 51, 234, 0.5)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+      },
+      backdropBlur: {
+        'xs': '2px',
+      },
+      borderRadius: {
+        '4xl': '4rem',
+      },
     },
   },
   plugins: [],

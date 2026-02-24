@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen">
-    <!-- Hero Section with Parallax -->
+    <!-- Hero Section -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden">
       <!-- Animated Background -->
       <div class="absolute inset-0 bg-gradient-to-br from-purple-900 via-purple-800 to-pink-900">
@@ -18,13 +18,16 @@
       <div class="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
         <Transition name="fade-up" mode="out-in">
           <div :key="heroVisible">
-            <p class="text-purple-300 text-sm md:text-base uppercase tracking-widest mb-4 font-medium">
-              Landscape Designer
-            </p>
+            <UBadge variant="soft" class="mb-4 bg-purple-500/20 text-purple-200 border-purple-400/30">
+              <span class="uppercase tracking-widest text-xs">Landscape Designer</span>
+            </UBadge>
+
             <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
               <span class="block">张心谷</span>
             </h1>
+
             <div class="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto mb-6 rounded-full"></div>
+
             <p class="text-lg md:text-2xl mb-4 text-purple-100 font-light">
               用设计诠释自然与艺术的完美融合
             </p>
@@ -35,23 +38,27 @@
 
             <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <NuxtLink
+              <UButton
                 to="/projects"
-                class="group relative px-8 py-4 bg-white text-purple-900 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/30 hover:scale-105"
+                size="xl"
+                variant="solid"
+                color="white"
+                class="shadow-xl shadow-purple-500/30 hover:shadow-2xl hover:shadow-purple-500/40"
               >
-                <span class="relative z-10 flex items-center gap-2">
+                <span class="flex items-center gap-2">
                   探索作品
-                  <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                  </svg>
+                  <UIcon name="i-heroicons-arrow-right" class="w-5 h-5" />
                 </span>
-              </NuxtLink>
-              <NuxtLink
+              </UButton>
+              <UButton
                 to="/about"
-                class="px-8 py-4 border-2 border-white/50 text-white rounded-full font-semibold backdrop-blur-sm hover:bg-white/10 hover:border-white transition-all duration-300"
+                size="xl"
+                variant="outline"
+                color="white"
+                class="border-white/50 hover:bg-white/10"
               >
                 了解更多
-              </NuxtLink>
+              </UButton>
             </div>
           </div>
         </Transition>
@@ -61,9 +68,7 @@
       <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
         <div class="flex flex-col items-center gap-2 text-white/60 animate-bounce">
           <span class="text-xs uppercase tracking-widest">Scroll</span>
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-          </svg>
+          <UIcon name="i-heroicons-arrow-down" class="w-6 h-6" />
         </div>
       </div>
     </section>
@@ -75,7 +80,9 @@
           <div v-for="(stat, index) in stats" :key="stat.label" class="text-center group">
             <Transition name="fade-up" :delay="index * 100">
               <div class="space-y-2">
-                <div class="text-4xl md:text-5xl font-bold gradient-text">{{ stat.value }}</div>
+                <div class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
+                  {{ stat.value }}
+                </div>
                 <div class="text-gray-600 text-sm">{{ stat.label }}</div>
               </div>
             </Transition>
@@ -89,9 +96,11 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Section Header -->
         <div class="text-center mb-16">
-          <span class="text-purple-600 text-sm uppercase tracking-widest font-medium">Portfolio</span>
+          <UBadge variant="soft" class="mb-4 bg-purple-100 text-purple-700">
+            <span class="uppercase tracking-widest text-xs">Portfolio</span>
+          </UBadge>
           <h2 class="text-4xl md:text-5xl font-bold mt-3 mb-4">
-            <span class="gradient-text">精选项目</span>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">精选项目</span>
           </h2>
           <p class="text-gray-600 max-w-2xl mx-auto text-lg">
             每一个作品都是对自然与生活的独特诠释
@@ -107,9 +116,9 @@
             class="group"
           >
             <Transition name="fade-up">
-              <div class="relative overflow-hidden rounded-3xl bg-white shadow-lg h-full">
+              <UCard class="h-full overflow-hidden group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1">
                 <!-- Image -->
-                <div class="relative h-72 overflow-hidden">
+                <div class="relative h-72 overflow-hidden -mx-6 -mt-6 mb-4">
                   <div
                     class="absolute inset-0 bg-gradient-to-br transition-transform duration-700 group-hover:scale-110"
                     :class="project.gradient"
@@ -118,13 +127,13 @@
                     {{ project.icon }}
                   </div>
                   <!-- Overlay Badge -->
-                  <div class="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-medium text-gray-700 shadow-sm">
+                  <UBadge variant="solid" color="white" class="absolute top-4 right-4 shadow-lg">
                     {{ project.category }}
-                  </div>
+                  </UBadge>
                 </div>
 
                 <!-- Content -->
-                <div class="p-6">
+                <div>
                   <h3 class="text-xl font-semibold mb-2 group-hover:text-purple-600 transition-colors">
                     {{ project.title }}
                   </h3>
@@ -133,36 +142,34 @@
                   </p>
                   <div class="flex items-center justify-between text-sm text-gray-500">
                     <span class="flex items-center gap-1.5">
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                      </svg>
+                      <UIcon name="i-heroicons-map-pin" class="w-4 h-4" />
                       {{ project.location }}
                     </span>
                     <span class="text-purple-600 font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
                       详情
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                      </svg>
+                      <UIcon name="i-heroicons-arrow-long-right" class="w-4 h-4" />
                     </span>
                   </div>
                 </div>
-              </div>
+              </UCard>
             </Transition>
           </NuxtLink>
         </div>
 
         <!-- View All -->
         <div class="text-center mt-12">
-          <NuxtLink
+          <UButton
             to="/projects"
-            class="inline-flex items-center gap-2 px-8 py-4 gradient-btn text-white rounded-full font-semibold shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/40 transition-all duration-300 hover:scale-105"
+            size="xl"
+            variant="solid"
+            color="purple"
+            class="shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/40"
           >
-            查看更多项目
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-            </svg>
-          </NuxtLink>
+            <span class="flex items-center gap-2">
+              查看更多项目
+              <UIcon name="i-heroicons-arrow-right" class="w-5 h-5" />
+            </span>
+          </UButton>
         </div>
       </div>
     </section>
@@ -172,9 +179,11 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Section Header -->
         <div class="text-center mb-16">
-          <span class="text-purple-600 text-sm uppercase tracking-widest font-medium">Blog</span>
+          <UBadge variant="soft" class="mb-4 bg-purple-100 text-purple-700">
+            <span class="uppercase tracking-widest text-xs">Blog</span>
+          </UBadge>
           <h2 class="text-4xl md:text-5xl font-bold mt-3 mb-4">
-            <span class="gradient-text">设计随笔</span>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">设计随笔</span>
           </h2>
           <p class="text-gray-600 max-w-2xl mx-auto text-lg">
             分享关于景观、生活和美学的思考
@@ -190,9 +199,9 @@
             class="group"
           >
             <Transition name="fade-up">
-              <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 h-full">
+              <UCard class="h-full overflow-hidden group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1">
                 <!-- Cover -->
-                <div class="relative h-48 overflow-hidden">
+                <div class="relative h-48 overflow-hidden -mx-6 -mt-6 mb-4">
                   <div
                     class="absolute inset-0 bg-gradient-to-br transition-transform duration-700 group-hover:scale-110"
                     :class="article.gradient"
@@ -201,13 +210,13 @@
                     {{ article.icon }}
                   </div>
                   <!-- Category Badge -->
-                  <div class="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-medium text-purple-600 shadow-sm">
+                  <UBadge variant="solid" color="white" class="absolute top-4 left-4 shadow-lg">
                     {{ article.category }}
-                  </div>
+                  </UBadge>
                 </div>
 
                 <!-- Content -->
-                <div class="p-6">
+                <div>
                   <h3 class="text-lg font-semibold mb-3 group-hover:text-purple-600 transition-colors line-clamp-2">
                     {{ article.title }}
                   </h3>
@@ -217,30 +226,30 @@
                   <div class="flex items-center justify-between text-sm text-gray-500">
                     <span>{{ formatDate(article.date) }}</span>
                     <span class="flex items-center gap-1.5">
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                      </svg>
+                      <UIcon name="i-heroicons-eye" class="w-4 h-4" />
                       {{ article.views }}
                     </span>
                   </div>
                 </div>
-              </div>
+              </UCard>
             </Transition>
           </NuxtLink>
         </div>
 
         <!-- View All -->
         <div class="text-center mt-12">
-          <NuxtLink
+          <UButton
             to="/blog"
-            class="inline-flex items-center gap-2 px-8 py-4 border-2 border-purple-200 text-purple-700 rounded-full font-semibold hover:border-purple-300 hover:bg-purple-50 transition-all duration-300"
+            size="xl"
+            variant="outline"
+            color="purple"
+            class="hover:bg-purple-50"
           >
-            查看更多文章
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-            </svg>
-          </NuxtLink>
+            <span class="flex items-center gap-2">
+              查看更多文章
+              <UIcon name="i-heroicons-arrow-right" class="w-5 h-5" />
+            </span>
+          </UButton>
         </div>
       </div>
     </section>
@@ -250,7 +259,9 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Section Header -->
         <div class="text-center mb-16">
-          <span class="text-purple-300 text-sm uppercase tracking-widest font-medium">Services</span>
+          <UBadge variant="soft" class="mb-4 bg-white/10 text-purple-200 border-purple-400/30">
+            <span class="uppercase tracking-widest text-xs">Services</span>
+          </UBadge>
           <h2 class="text-4xl md:text-5xl font-bold mt-3 mb-4">
             专业服务
           </h2>
@@ -263,11 +274,11 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div v-for="service in services" :key="service.title" class="group">
             <Transition name="fade-up">
-              <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-300 h-full">
+              <UCard class="h-full bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all duration-300">
                 <div class="text-4xl mb-4">{{ service.icon }}</div>
                 <h3 class="text-xl font-semibold mb-3">{{ service.title }}</h3>
                 <p class="text-purple-200 text-sm leading-relaxed">{{ service.description }}</p>
-              </div>
+              </UCard>
             </Transition>
           </div>
         </div>
@@ -280,25 +291,26 @@
         <Transition name="fade-up">
           <div>
             <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-purple-500/30">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-              </svg>
+              <UIcon name="i-heroicons-chat-bubble-left-right" class="w-8 h-8 text-white" />
             </div>
             <h2 class="text-4xl md:text-5xl font-bold mb-6">
-              <span class="gradient-text">有项目想合作吗？</span>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">有项目想合作吗？</span>
             </h2>
             <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
               无论是景观设计、咨询还是其他合作机会，都欢迎与我联系
             </p>
-            <NuxtLink
+            <UButton
               to="/messages"
-              class="inline-flex items-center gap-2 px-8 py-4 gradient-btn text-white rounded-full font-semibold shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/40 transition-all duration-300 hover:scale-105"
+              size="xl"
+              variant="solid"
+              color="purple"
+              class="shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/40"
             >
-              留言联系
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-              </svg>
-            </NuxtLink>
+              <span class="flex items-center gap-2">
+                留言联系
+                <UIcon name="i-heroicons-paper-airplane" class="w-5 h-5" />
+              </span>
+            </UButton>
           </div>
         </Transition>
       </div>
@@ -445,7 +457,6 @@ const formatDate = (dateStr: string) => {
 
 // On mounted
 onMounted(() => {
-  // Trigger hero animation
   setTimeout(() => {
     heroVisible.value = true
   }, 100)

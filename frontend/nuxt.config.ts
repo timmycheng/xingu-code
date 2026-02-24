@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@nuxtjs/supabase',
+    '@nuxt/ui',
   ],
 
   supabase: {

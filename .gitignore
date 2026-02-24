@@ -40,3 +40,6 @@ uploads/
 # Temporary files
 *.tmp
 *.temp
+
+# Backend SQL schemas (manage directly in Supabase dashboard)
+backend/*.sql

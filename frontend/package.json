@@ -13,6 +13,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@nuxtjs/supabase": "^2.0.4",
     "@pinia/nuxt": "^0.5.1",
     "@supabase/supabase-js": "^2.39.3",
     "element-plus": "^2.5.5",

@@ -1,7 +1,7 @@
-import { supabase } from '~/supabase/client'
 import type { Profile } from '~/types/database'
 
 export function useAuth() {
+  const supabase = useSupabaseClient()
   const authStore = useAuthStore()
   const user = ref<Profile | null>(null)
   const isAuthenticated = computed(() => !!user.value)

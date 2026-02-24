@@ -1,6 +1,14 @@
-import { createClient } from '@supabase/supabase-js'
+import type { SupabaseClient } from '@supabase/supabase-js'
 
-const supabaseUrl = useRuntimeConfig().public.supabaseUrl
-const supabaseKey = useRuntimeConfig().public.supabaseAnonKey
+let client: SupabaseClient | undefined
 
-export const supabase = createClient(supabaseUrl, supabaseKey)
+export function useSupabaseCustomClient() {
+  if (!client) {
+    throw new Error('Supabase client not initialized')
+  }
+  return client
+}
+
+export function setSupabaseCustomClient(newClient: SupabaseClient) {
+  client = newClient
+}
